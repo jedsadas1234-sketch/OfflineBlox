@@ -14,10 +14,19 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.7
-      - run: unzip -q OfflineBlox-project1.zip
-      - run: gradle assembleDebug --stacktrace
-        working-directory: OfflineBlox
+      - name: Build
+        run: |
+          if [ -f settings.gradle.kts ]; then
+            DIR=.
+          else
+            unzip -q "$(ls *.zip | head -n1)" -d proj
+            DIR="$(dirname "$(find proj -name settings.gradle.kts | head -n1)")"
+          fi
+          echo "Project dir: $DIR"
+          cd "$DIR"
+          gradle assembleDebug --stacktrace
+          echo "APK_DIR=$PWD/app/build/outputs/apk/debug" >> "$GITHUB_ENV"
       - uses: actions/upload-artifact@v4
         with:
           name: OfflineBlox-debug-apk
-          path: OfflineBlox/app/build/outputs/apk/debug/app-debug.apk
+          path: ${{ env.APK_DIR }}/*.apk
