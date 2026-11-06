@@ -19,7 +19,7 @@ jobs:
           if [ -f settings.gradle.kts ]; then
             DIR=.
           else
-            unzip -q "$(ls *.zip | head -n1)" -d proj
+            unzip -q OfflineBlox-project2.zip -d proj
             DIR="$(dirname "$(find proj -name settings.gradle.kts | head -n1)")"
           fi
           echo "Project dir: $DIR"
