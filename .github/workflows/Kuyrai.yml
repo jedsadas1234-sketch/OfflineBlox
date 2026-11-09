@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Unzip project
-        run: unzip -q -o PhoneRate67.zip
+        run: unzip -q -o PhoneRate212224.zip
 
       - uses: actions/setup-java@v4
         with:
