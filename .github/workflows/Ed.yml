@@ -28,7 +28,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          ZIP_NAME="OfflineBloxEditor-project85.zip"
+          ZIP_NAME="OfflineBloxEditor-OBMAPv1-source.zip"
 
           if [ ! -f "$ZIP_NAME" ]; then
             echo "::error::ZIP not found: $ZIP_NAME"
